@@ -13,18 +13,20 @@ class Cell extends React.Component {
     render() {
         const {Clicked} = this.state;
         return (
-            <div className = {`${classes.cell} ${
-                this.props.Clicked ? classes.clicked : null
-            }`}
-            onClick = {this.props.Available && !this.props.IsChip ? this.props.onAvailableChipClick : null}
-            >
-                <Droppable>
+            <Droppable droppableId={`${this.props.ChipId}` }>
                 {(provided) => (
-                    this.props.IsChip ? <Chip onChipClick={this.props.onChipClick} onAvailableChipClick = {this.props.onAvailableChipClick} ChipType = {this.props.ChipType} Available = {this.props.Available}/> : null,
-                    this.props.Available && !this.props.IsChip ? <div className = {classes.emptyAvailable}></div> : null)
+                    <div {...provided.droppableProps} ref = {provided.innerRef}
+                    className = {`${classes.cell} ${
+                        this.props.Clicked ? classes.clicked : null
+                    }`}
+                    onClick = {this.props.Available && !this.props.IsChip ? this.props.onAvailableChipClick : null}
+                    >
+                        {this.props.IsChip ? <Chip onChipClick={this.props.onChipClick} onAvailableChipClick = {this.props.onAvailableChipClick} ChipType = {this.props.ChipType} Available = {this.props.Available} ChipId = {this.props.ChipId}/> : null}
+                        {(this.props.Available && !this.props.IsChip) ? <div className = {classes.emptyAvailable}></div> : null}
+                    </div>
+                    )
                 }
                 </Droppable>
-            </div>
         );
     }
 }

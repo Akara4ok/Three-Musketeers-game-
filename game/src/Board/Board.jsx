@@ -114,11 +114,11 @@ class Board extends React.Component {
     }
 
     render() {
-        const{ cells } = this.state;
+        const{ cells, size } = this.state;
         return (
             <div className = {classes.container}>
                 <DragDropContext>
-                {cells.map((element, i) => (element.map((element, j) => (<Cell onChipClick={() => this.onChipClick(i, j)} onAvailableChipClick = {() => this.onAvailableChipClick(i, j)} ChipType = {element.Type} IsChip = {element.IsChip} Clicked = {element.Clicked} Available = {element.Available} />))))}
+                {cells.map((element, i) => (element.map((element, j) => (<Cell onChipClick={() => this.onChipClick(i, j)} onAvailableChipClick = {() => this.onAvailableChipClick(i, j)} ChipType = {element.Type} IsChip = {element.IsChip} Clicked = {element.Clicked} Available = {element.Available} ChipId = {i* size + j} />))))}
                 </DragDropContext>
             </div>
         );

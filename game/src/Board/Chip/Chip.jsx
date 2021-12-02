@@ -8,18 +8,30 @@ class Chip extends React.Component {
         this.state = {};
     }
 
+    getStyle(style, snapshot) {
+        if (!snapshot.isDropAnimating) {
+          return style;
+        }
+        return {
+          ...style,
+          transitionDuration: `0.001s`,
+        };
+      }
+
     render() {
 
         return (
-            <div 
-            onClick = {this.props.Available ? this.props.onAvailableChipClick : this.props.onChipClick}
-            className = {`${classes.chip} ${
-                this.props.ChipType ? classes.musketeer : classes.guardian
-            }`}>
-            <Draggable>
-            { this.props.Available ? <div className = {classes.available}>&#10006;</div> : null}
+            <Draggable key = {this.props.ChipId} draggableId={`${this.props.ChipId}`} index = {this.props.ChipId}>
+            {(provided) => (
+                    <div {...provided.draggableProps} {...provided.dragHandleProps} ref = {provided.innerRef} ref = {provided.innerRef}
+                    onClick = {this.props.Available ? this.props.onAvailableChipClick : this.props.onChipClick}
+                    className = {`${classes.chip} ${
+                        this.props.ChipType ? classes.musketeer : classes.guardian
+                    }`}
+                    style={this.getStyle(provided.draggableProps.style, snapshot)}>
+                        {this.props.Available ? <div className = {classes.available}>&#10006;</div> : null}
+                 </div>)}
             </Draggable>
-            </div>
         );
     }
 }
