@@ -1,0 +1,28 @@
+.cell{
+    width: calc(20% - 16px);
+    height: calc(20% - 16px);
+    margin: 5px;
+
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.newTurn{
+    background-color: rgb(78, 126, 78);
+}
+
+.clicked{
+    //background-color: rgb(195, 245, 94);
+}
+
+
+.emptyAvailable{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(104, 104, 104, 0.432);
+    position: absolute;
+}
